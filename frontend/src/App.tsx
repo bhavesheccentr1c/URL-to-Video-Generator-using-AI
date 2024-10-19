@@ -12,14 +12,11 @@ function App() {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:3000/summarize', { url });
+            const response = await axios.post('https://url-to-video-generator-using-ai.onrender.com/summarize', { url });
             const videoUrl = response.data.videoUrl;
-         // URL to the subtitles
 
-            // Check if the URLs are valid before opening
-            if (videoUrl ) {
-                console.log('Opening video URL:', videoUrl); 
-               
+            if (videoUrl) {
+                console.log('Opening video URL:', videoUrl);
                 openVideoInNewTab(videoUrl);
             } else {
                 setError('No video URL received.');
@@ -64,12 +61,7 @@ function App() {
                     </style>
                 </head>
                 <body>
-                    <video
-                        id="my-video"
-                        class="video-js"
-                        controls
-                        preload="auto"
-                    >
+                    <video id="my-video" class="video-js" controls preload="auto">
                         <source src="${videoUrl}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -82,67 +74,65 @@ function App() {
     };
 
     return (
-        <>
-            <div className={`relative ${loading ? 'blur-md' : ''}`}>
-                <main className="max-w-2xl mx-auto flex gap-8 px-4">
-                    <div className="py-8 flex flex-col justify-center">
-                        <h1 className="text-4xl font-bold uppercase mb-8">
-                            <span className="text-5xl">URL to Video</span>
-                            <br />
-                            <span className="bg-gradient-to-br from-green-300 from-30% to-yellow-500 bg-clip-text text-transparent">
-                                with power of Gen AI
-                            </span>
-                        </h1>
-                        <form className="grid gap-2 overflow-hidden" onSubmit={handleSubmit}>
-                            <input
-                                className="border-2 rounded-full bg-transparent text-white px-4 py-2 grow"
-                                type="url"
-                                placeholder="https://"
-                                value={url}
-                                onChange={(e) => setUrl(e.target.value)}
-                                required
-                            />
-                            <button
-                                className={`bg-green-500 text-white px-4 py-2 rounded-full uppercase ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                type="submit"
-                                disabled={loading}
-                            >
-                                {loading ? 'Creating...' : 'Create Video'}
-                            </button>
-                        </form>
-                    </div>
-                    <div className="py-4">
-                        {error && (
-                            <div className="bg-red-200 text-red-600 p-2 rounded-md mb-4">
-                                <p>{error}</p>
-                            </div>
-                        )}
-                        <div className="bg-gray-200 w-[240px] h-[380px] text-gray-500 rounded-2xl relative overflow-hidden">
-                            {loading && <p>Loading...</p>}
-                            <video
-                                className="rounded-2xl absolute top-0 left-0 w-full h-full"
-                                autoPlay
-                                muted
-                                loop
-                                style={{ objectFit: 'cover' }}
-                            >
-                                <source
-                                    src="/invideo-ai-1080 SpaceX Sues California Over Launch Block 2024-10-17 (online-video-cutter.com).mp4"
-                                    type="video/mp4"
-                                />
-                                Your browser does not support the video tag.
-                            </video>
+        <div className={`relative ${loading ? 'blur-md' : ''}`}>
+            <main className="max-w-2xl mx-auto flex flex-col gap-8 px-4 py-4">
+                <div className="flex flex-col items-center">
+                    <h1 className="text-3xl font-bold uppercase mb-4 text-center">
+                        <span className="text-4xl">URL to Video</span>
+                        <br />
+                        <span className="bg-gradient-to-br from-green-300 to-yellow-500 bg-clip-text text-transparent">
+                            with the power of Gen AI
+                        </span>
+                    </h1>
+                    <form className="grid gap-2 w-full" onSubmit={handleSubmit}>
+                        <input
+                            className="border-2 rounded-full bg-transparent text-white px-4 py-2 w-full"
+                            type="url"
+                            placeholder="https://"
+                            value={url}
+                            onChange={(e) => setUrl(e.target.value)}
+                            required
+                        />
+                        <button
+                            className={`bg-green-500 text-white px-4 py-2 rounded-full uppercase ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            type="submit"
+                            disabled={loading}
+                        >
+                            {loading ? 'Creating...' : 'Create Video'}
+                        </button>
+                    </form>
+                </div>
+                <div className="flex flex-col items-center">
+                    {error && (
+                        <div className="bg-red-200 text-red-600 p-2 rounded-md mb-4 w-full text-center">
+                            <p>{error}</p>
                         </div>
+                    )}
+                    <div className="bg-gray-200 w-full max-w-xs h-[380px] text-gray-500 rounded-2xl relative overflow-hidden">
+                        {loading && <p>Loading...</p>}
+                        <video
+                            className="rounded-2xl absolute top-0 left-0 w-full h-full"
+                            autoPlay
+                            muted
+                            loop
+                            style={{ objectFit: 'cover' }}
+                        >
+                            <source
+                                src="/invideo-ai-1080 SpaceX Sues California Over Launch Block 2024-10-17 (online-video-cutter.com).mp4"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
-                </main>
-            </div>
+                </div>
+            </main>
 
             {loading && (
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <p className="text-white text-2xl">Loading...</p>
                 </div>
             )}
-        </>
+        </div>
     );
 }
 

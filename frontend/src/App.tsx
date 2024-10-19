@@ -12,12 +12,14 @@ function App() {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:3000/summarize', { url });
+            const response = await axios.post('https://url-to-video-generator-using-ai.onrender.com/summarize', { url });
             const videoUrl = response.data.videoUrl;
+         // URL to the subtitles
 
             // Check if the URLs are valid before opening
-            if (videoUrl) {
-                console.log('Opening video URL:', videoUrl);
+            if (videoUrl ) {
+                console.log('Opening video URL:', videoUrl); 
+               
                 openVideoInNewTab(videoUrl);
             } else {
                 setError('No video URL received.');
@@ -82,10 +84,10 @@ function App() {
     return (
         <>
             <div className={`relative ${loading ? 'blur-md' : ''}`}>
-                <main className="max-w-full sm:max-w-2xl mx-auto flex flex-col sm:flex-row gap-4 px-4">
-                    <div className="py-8 flex flex-col justify-center w-full">
-                        <h1 className="text-3xl sm:text-4xl font-bold uppercase mb-6 text-center sm:text-left">
-                            <span className="text-4xl sm:text-5xl">URL to Video</span>
+                <main className="max-w-2xl mx-auto flex gap-8 px-4">
+                    <div className="py-8 flex flex-col justify-center">
+                        <h1 className="text-4xl font-bold uppercase mb-8">
+                            <span className="text-5xl">URL to Video</span>
                             <br />
                             <span className="bg-gradient-to-br from-green-300 from-30% to-yellow-500 bg-clip-text text-transparent">
                                 with power of Gen AI
@@ -93,7 +95,7 @@ function App() {
                         </h1>
                         <form className="grid gap-2 w-full" onSubmit={handleSubmit}>
                             <input
-                                className="border-2 rounded-full bg-transparent text-white px-4 py-2 w-full"
+                                className="border-2 rounded-full bg-transparent text-white px-4 py-2 grow"
                                 type="url"
                                 placeholder="https://"
                                 value={url}
@@ -109,14 +111,14 @@ function App() {
                             </button>
                         </form>
                     </div>
-                    <div className="py-4 w-full">
+                    <div className="py-4">
                         {error && (
                             <div className="bg-red-200 text-red-600 p-2 rounded-md mb-4">
                                 <p>{error}</p>
                             </div>
                         )}
-                        <div className="bg-gray-200 w-full sm:w-[240px] h-[380px] text-gray-500 rounded-2xl relative overflow-hidden">
-                            {loading && <p className="text-center">Loading...</p>}
+                        <div className="bg-gray-200 w-[240px] h-[380px] text-gray-500 rounded-2xl relative overflow-hidden">
+                            {loading && <p>Loading...</p>}
                             <video
                                 className="rounded-2xl absolute top-0 left-0 w-full h-full"
                                 autoPlay
@@ -137,7 +139,7 @@ function App() {
 
             {loading && (
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <p className="text-white text-lg sm:text-2xl">Loading...</p>
+                    <p className="text-white text-2xl">Loading...</p>
                 </div>
             )}
         </>

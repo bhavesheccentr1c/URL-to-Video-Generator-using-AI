@@ -26,6 +26,7 @@ if (!fs.existsSync(outputDirectory)) {
     fs.mkdirSync(outputDirectory, { recursive: true });
 }
 
+const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
 // Endpoint to summarize the URL and create a video
 app.post('/summarize', async (req, res) => {
     const { url } = req.body;
@@ -39,7 +40,7 @@ app.post('/summarize', async (req, res) => {
         const outputFilePath = path.join(outputDirectory, 'output_video.mp4');
         await createVideo(audioFilePath, imageUrl, srtFilePath, outputFilePath);
 
-        res.json({ videoUrl: `http://localhost:${PORT}/output_video.mp4` });
+       res.json({ videoUrl: `${baseUrl}/output_video.mp4` });
     } catch (error) {
         console.error('Error processing request:', error.message || error);
         res.status(500).json({ error: 'Failed to generate the video.' });

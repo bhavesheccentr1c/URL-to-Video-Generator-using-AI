@@ -14,12 +14,10 @@ function App() {
         try {
             const response = await axios.post('https://url-to-video-generator-using-ai.onrender.com/summarize', { url });
             const videoUrl = response.data.videoUrl;
-         // URL to the subtitles
 
             // Check if the URLs are valid before opening
-            if (videoUrl ) {
-                console.log('Opening video URL:', videoUrl); 
-               
+            if (videoUrl) {
+                console.log('Opening video URL:', videoUrl);
                 openVideoInNewTab(videoUrl);
             } else {
                 setError('No video URL received.');
@@ -38,46 +36,11 @@ function App() {
     };
 
     const openVideoInNewTab = (videoUrl: string) => {
-        const newTab = window.open();
+        const newTab = window.open(videoUrl, '_blank');
         if (newTab) {
-            newTab.document.write(`
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Video Player</title>
-                    <link href="https://vjs.zencdn.net/7.21.8/video-js.css" rel="stylesheet" />
-                    <style>
-                        body {
-                            margin: 0;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            height: 100vh;
-                            background-color: black;
-                        }
-                        .video-js {
-                            width: 100%;
-                            max-width: 800px;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <video
-                        id="my-video"
-                        class="video-js"
-                        controls
-                        preload="auto"
-                    >
-                        <source src="${videoUrl}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <script src="https://vjs.zencdn.net/7.21.8/video.min.js"></script>
-                </body>
-                </html>
-            `);
-            newTab.document.close();
+            newTab.focus(); // Bring the new tab into focus
+        } else {
+            alert('Please allow pop-ups for this website to view the video.');
         }
     };
 

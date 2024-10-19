@@ -38,6 +38,8 @@ export const createVideo = (audioFilePath, imageFilePath, srtFilePath, outputFil
             .input(escapedAudioPath)
             .audioCodec('aac') // Set audio codec
             .videoCodec('libx264') // Set video codec
+            .outputOptions('-crf', '27')  // Higher value = faster but lower quality (range 0-51)
+            .outputOptions('-preset', 'ultrafast')  // Use faster compression preset
             .outputOptions('-tune', 'stillimage') // Tune for still images (optimization)
             .outputOptions('-vf', `subtitles=${escapedSrtPath}`) // Apply subtitles filter without quotes
             .outputOptions('-shortest') // Limit video duration to the shortest input (audio)

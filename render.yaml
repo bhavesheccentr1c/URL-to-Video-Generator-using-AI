@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run dev
+    repo: https://github.com/bhavesheccentr1c/URL-to-Video-Generator-using-AI.git
+    branch: main
+  - type: web
+    name: backend
+    env: node
+    buildCommand: npm install
+    startCommand: node backend/index.js
+    repo: https://github.com/bhavesheccentr1c/URL-to-Video-Generator-using-AI.git
+    branch: main

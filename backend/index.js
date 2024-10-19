@@ -39,7 +39,7 @@ app.post('/summarize', async (req, res) => {
         const { summary, audioFilePath, srtFilePath, imageUrl } = await summarizeURL(url);
         const outputFilePath = path.join(outputDirectory, 'output_video.mp4');
         await createVideo(audioFilePath, imageUrl, srtFilePath, outputFilePath);
-
+        console.log("Video created .");
        res.json({ videoUrl: `${baseUrl}/output/output_video.mp4` });
     } catch (error) {
         console.error('Error processing request:', error.message || error);

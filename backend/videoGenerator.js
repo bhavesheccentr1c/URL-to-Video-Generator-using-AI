@@ -36,9 +36,8 @@ export const createVideo = (audioFilePath, imageFilePath, srtFilePath, outputFil
             .input(escapedImagePath)
             .loop() // Loop the image indefinitely until the audio ends
             .input(escapedAudioPath)
-            .audioCodec('aac') // Set audio codec
             .videoCodec('libx264') // Set video codec
-            .outputOptions('-crf', '27')  // Higher value = faster but lower quality (range 0-51)
+            .outputOptions('-crf', '28')  // Higher value = faster but lower quality (range 0-51)
             .outputOptions('-preset', 'ultrafast')  // Use faster compression preset
             .outputOptions('-tune', 'stillimage') // Tune for still images (optimization)
             .outputOptions('-vf', `subtitles=${escapedSrtPath}`) // Apply subtitles filter without quotes

@@ -43,7 +43,7 @@ app.post('/summarize', async (req, res) => {
        res.json({ videoUrl: `${baseUrl}/output_video.mp4` });
     } catch (error) {
         console.error('Error processing request:', error.message || error);
-        res.status(500).json({ error: 'Failed to generate the video.' });
+        res.status(500).json({ error: 'Please Try Again in Sometime.' });
     }
 });
 

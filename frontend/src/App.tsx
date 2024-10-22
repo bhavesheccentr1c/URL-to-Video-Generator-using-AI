@@ -47,7 +47,7 @@ function App() {
     return (
         <>
             <div className={`relative ${loading ? 'blur-md' : ''}`}>
-                <main className="max-w-2xl mx-auto flex gap-8 px-4">
+                <main className="max-w-2xl mx-auto flex flex-col md:flex-row gap-8 px-4">
                     <div className="py-8 flex flex-col justify-center">
                         <h1 className="text-4xl font-bold uppercase mb-8">
                             <span className="text-5xl">URL to Video</span>
@@ -74,16 +74,16 @@ function App() {
                             </button>
                         </form>
                     </div>
-                    <div className="py-4">
+                    <div className="py-4  w-[240px] h-[380px] md:w-auto mx-auto">
                         {error && (
                             <div className="bg-red-200 text-red-600 p-2 rounded-md mb-4">
                                 <p>{error}</p>
                             </div>
                         )}
-                        <div className="bg-gray-200 w-[240px] h-[380px] text-gray-500 rounded-2xl relative overflow-hidden">
+                        <div className="bg-gray-200 w-full md:w-[240px] h-[380px] md:h-[380px] text-gray-500 rounded-2xl relative overflow-hidden mx-auto">
                             {loading && <p>Loading...</p>}
                             <video
-                                className="rounded-2xl absolute top-0 left-0 w-full h-full"
+                                className="rounded-2xl w-full h-full"
                                 autoPlay
                                 muted
                                 loop

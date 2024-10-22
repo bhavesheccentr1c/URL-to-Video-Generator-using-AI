@@ -12,7 +12,7 @@ function App() {
         setError('');
 
         try {
-            const response = await axios.post('https://url-to-video-generator-using-ai.onrender.com/summarize', { url });
+            const response = await axios.post('http://localhost:3000/summarize', { url });
             const videoUrl = response.data.videoUrl;
 
             // Check if the URLs are valid before opening
@@ -101,9 +101,10 @@ function App() {
             </div>
 
             {loading && (
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <p className="text-white text-2xl">Loading...</p>
-                </div>
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center z-50">
+                <div className="animate-spin h-12 w-12 border-4 border-t-transparent border-white rounded-full mb-4"></div>
+                <p className="text-white text-2xl animate-pulse">Loading...</p>
+            </div>
             )}
         </>
     );

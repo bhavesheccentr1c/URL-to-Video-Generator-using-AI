@@ -12,7 +12,7 @@ function App() {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:3000/summarize', { url });
+            const response = await axios.post('https://url-to-video-generator-using-ai.onrender.com/summarize', { url });
             const videoUrl = response.data.videoUrl;
 
             // Check if the URLs are valid before opening

@@ -41,7 +41,7 @@ export const createVideo = (audioFilePath, imageFilePath, srtFilePath, outputFil
             .outputOptions('-preset', 'ultrafast')  // Use faster compression preset
             .outputOptions('-tune', 'stillimage') // Tune for still images (optimization)
             .outputOptions('-vf', `subtitles=${escapedSrtPath}`) // Apply subtitles filter without quotes
-            .outputOptions('-shortest') // Limit video duration to the shortest input (audio)
+            .outputOptions('-t', '51') // Set the video duration to 1 minute (60 seconds)
             .on('end', () => {
                 console.log('Video created successfully:', escapedOutputPath);
                 resolve(escapedOutputPath);

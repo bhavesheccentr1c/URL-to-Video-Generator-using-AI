@@ -65,8 +65,8 @@ async function summarizeURL(url) {
 // Function to generate TTS
 async function generateTTS(text) {
     try {
-        // Replace '.' with ',' to add a pause after every period
-        const modifiedText = text.replace(/\./g, ',');
+        // Replace '.' and '?' with ',' to add a pause after every period and question mark
+        const modifiedText = text.replace(/\./g, ', ,').replace(/\?/g, ', ,');
 
         if (typeof modifiedText !== 'string' || modifiedText.length === 0) {
             throw new Error('Input text for TTS is invalid');

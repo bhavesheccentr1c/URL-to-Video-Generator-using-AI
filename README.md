@@ -1,43 +1,18 @@
+URL to Video Generator (News-Specific)
+This project is a URL to video generator that converts news articles into short videos using AI. It takes a news URL, generates a summarized version of the article, creates an image, and uses AI-powered text-to-speech (TTS) to produce a video with subtitles.
 
-```
-URL-AI video generator
-├─ .vscode
-│  └─ settings.json
-├─ backend
-│  ├─ .env
-│  ├─ index.js
-│  ├─ output
-│  │  ├─ generated_image.png
-│  │  ├─ output_video.mp4
-│  │  ├─ summary.srt
-│  │  └─ summary.wav
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ runPython.js
-│  ├─ summarization.js
-│  └─ videoGenerator.js
-├─ frontend
-│  ├─ eslint.config.js
-│  ├─ index.html
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ postcss.config.js
-│  ├─ public
-│  │  ├─ invideo-ai-1080 SpaceX Sues California Over Launch Block 2024-10-17 (online-video-cutter.com).mp4
-│  │  └─ vite.svg
-│  ├─ README.md
-│  ├─ src
-│  │  ├─ App.tsx
-│  │  ├─ assets
-│  │  │  └─ react.svg
-│  │  ├─ index.css
-│  │  ├─ main.tsx
-│  │  └─ vite-env.d.ts
-│  ├─ tailwind.config.js
-│  ├─ tsconfig.app.json
-│  ├─ tsconfig.json
-│  ├─ tsconfig.node.json
-│  └─ vite.config.ts
-└─ vercel.json
+Features: 
+Summarization: Extracts key points from a news article and condenses them into a brief summary.
+Text-to-Speech: Converts the summarized content to audio using AI TTS.
+Image Generation: Creates a background image related to the content.
+Video Generation: Compiles the audio, image, and subtitles into a video format.
+Subtitle Support: Adds subtitles synchronized with the audio.
 
-```
+Tech Stack: 
+Backend: Node.js, Express.js, and FFmpeg for video processing.
+APIs: Hugging Face for Summarization, Text-to-Speech (TTS), and Image Generation models.
+Frontend: React, TypeScript.
+
+Prerequisites: 
+Node.js (v14+)
+FFmpeg (Required for video processing)

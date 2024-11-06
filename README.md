@@ -1,4 +1,5 @@
 URL to Video Generator (News-Specific)
+
 This project is a URL to video generator that converts news articles into short videos using AI. It takes a news URL, generates a summarized version of the article, creates an image, and uses AI-powered text-to-speech (TTS) to produce a video with subtitles.
 
 Features: 
